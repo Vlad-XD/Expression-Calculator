@@ -3,11 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href=".\reset.css" />
     <link rel="stylesheet" href=".\styles.css" />
     <script src=".\script.js" defer></script>
     <title>Expression Calculator</title>
   </head>
   <body>
-    <p>Hello World!</p>
+    <div class="header">
+      <a href="./index.html" class="title">Expression Calculator</a>
+      <a href="./about.html" id="about">about</a>
+    </div>
+    <div class="body">
+      <div id="input-container" class="container">
+        <h2 class="label">Input:</h2>
+        <input type="text" id="input" name="input" placeholder="Enter input here..." readonly>
+      </div>
+      <div id="result-container" class="container">
+        <h2 class="label">Result:</h2>
+        <input type="text" id="result" name="result" value="Result" readonly>
+      </div>
+      <div id="instruction-container" class="container">
+        <h2 class="label">Instructions:</h2>
+        <p id="instructions-text">Input a valid expression to calculate in the input box above.
+          Currently, the only supported operations are parentheticals, exponentiation (^), multiplication (*),
+          division (/), addition (+), subtraction (-).
+        </p>
+      </div>
+    </div>
+    <div class="footer"></div>
   </body>
 </html>
