@@ -1,7 +1,7 @@
 console.log("Ruby-Chan! Nani Ga Suki?");
 
-// let inputString = "20    *20/8*9    ^5+6987*8   562^7 8 +1-8 96  66   66";
-let inputString = "600*10-500*10";
+let inputString = "(20+89/45*96-96+98/85*96-99+99+6523*85541/8859-9632+5642*8552*(0.12567)*9+6-9)^2^3^0.09856^5";
+// let inputString = "(((((600*10)))))-500*10";
 
 // clean input up to remove white space
 inputString = inputString.replaceAll(" ", "");
@@ -9,6 +9,7 @@ inputString = inputString.replaceAll(" ", "");
 console.log(`The corrected input is ${inputString}`);
 
 // global variables
+const operators = ["+","-","*","/","^",")",undefined];
 let tokenLocation = 0;
 let token = inputString[tokenLocation];
 let outputInt = 0;
@@ -50,14 +51,14 @@ function expr() {
 function exprPrime() {
   if (token == "+"){
     accept();
-    let factorInt = base();
-    factorInt = factorInt + termPrime();
+    let factorInt = term();
+    factorInt = factorInt + exprPrime();
     return factorInt;
   } else if (token == "-") {
     accept();
-    let factorInt = base();
-    factorInt = factorInt + termPrime();
-    return (-1*factorInt);
+    let factorInt = term();
+    factorInt = -1*factorInt + exprPrime();
+    return factorInt;
   } else {
     // epsilon, so do nothing
     return 0; // we return 0, meaning adding/subtratcing 0, i.e., no change
@@ -85,8 +86,8 @@ function termPrime() {
   } else if (token == "/") {
     accept();
     let factorInt = base();
-    factorInt = factorInt * termPrime();
-    return 1/factorInt;
+    factorInt = 1/factorInt * termPrime();
+    return factorInt;
   } else {
     // epsilon, so do nothing
     return 1; // we return 1, meaning multiplying/dividing by 1, i.e., no change
@@ -118,11 +119,11 @@ function basePrime() {
 function factor() {
   if (token === "("){
     accept();
-    expr();
+    factorNumber = expr();
     if (token === ")"){
       accept();
-      let factorNumber = parseFloat(currentNumberString); //obtain factor
-      currentNumberString = ""; // reset current number
+      // let factorNumber = parseFloat(currentNumberString); //obtain factor
+      // currentNumberString = ""; // reset current number
       return factorNumber;
     } else {
       error();
@@ -166,13 +167,15 @@ function digit() {
 
 function digitPrime() {
   if (token === "."){
-    currentNumberString = currentNumberString.concat(digit);
+    currentNumberString = currentNumberString.concat(token);
     accept();
     decimal();
   } else if (["0","1","2","3","4","5","6","7","8","9"].includes(token)) {
     digit();
-  } else {
-    // epsilon, so do nothing
+  } else if (!operators.includes(token)) { //this behavior is meant to implement epsilon*
+    error();
+  }else{
+    // epsilon*, so do nothing
   }
 }
 
