@@ -29,11 +29,224 @@
         implementation.
       </p>
     </div>
-    <div class="grammer-container"></div>
-    <a
-      href="https://github.com/Vlad-XD/Expression-Calculator"
-      class="repo-link"
-    >Visit Source Code</a>
+    <div class="grammar-container">
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;input&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;expr&gt; [1]</p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;expr&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;term&gt; &lt;expr'&gt;</p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;expr'&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">+ &lt;term&gt; &lt;expr'&gt;</p>
+        </div>  
+
+          <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">- &lt;term&gt; &lt;expr'&gt;</p>
+        </div>  
+
+          <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">ε</p>
+        </div>  
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;term&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;base&gt; &lt;term'&gt;</p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;term'&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">* &lt;base&gt; &lt;term'&gt;</p>
+        </div>  
+
+          <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">/ &lt;base&gt; &lt;term'&gt;</p>
+        </div>  
+
+          <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">ε</p>
+        </div>  
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;base&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;factor&gt; &lt;base'&gt;</p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+          <div class="line">
+          <p class="lhs">&lt;base'&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">^ &lt;factor&gt; &lt;base'&gt;</p>
+        </div>  
+
+          <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">ε</p>
+        </div>  
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;factor&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">( &lt;exp&gt; )</p>
+        </div>
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;number&gt;</p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;number&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;digit&gt; &lt;digit'&gt;</p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;digit&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">0 &lt;digit'&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">1 &lt;digit'&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">2 &lt;digit'&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">...</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">9 &lt;digit'&gt;</p>
+        </div>  
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;digit'&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">. &lt;decimal&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">&lt;digit&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">ε* [2]</p>
+        </div>  
+      </div>
+
+      <div class="grammar-box">
+        <div class="line">
+          <p class="lhs">&lt;decimal&gt;</p>
+          <p class="arrow"> → </p>
+          <p class="rhs">0 &lt;decimal&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">1 &lt;decimal&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">2 &lt;decimal&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">...</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">9 &lt;decimal&gt;</p>
+        </div>  
+
+        <div class="line">
+          <p class="lhs"></p>
+          <p class="arrow"> → </p>
+          <p class="rhs">ε</p>
+        </div>  
+
+      </div>
+
+      <div class="notes-container">
+        <p class="label">Notes:</p>
+        <p class="note">
+          1. Nonterminal symbols are indicated as follows: &lt;nonterminal&gt;.
+          Other symbols not following this format are terminals.
+        </p>
+        <p class="note">
+          2. ε* refers to an "empty space" character added between a number
+          terminal and an operator terminal in our input (e.g, 2ε*+2), utilized
+          to indicate to the parser it has finished parsing a number. Note: in
+          the actual implementation, a character was not added to the input but
+          instead the code was modified to produce a similar effect.
+        </p>
+      </div>
+    </div>
+    <a href="https://github.com/Vlad-XD/Expression-Calculator" class="repo-link"
+      >View Source Code</a
+    >
     <div class="footer"></div>
   </body>
 </html>
