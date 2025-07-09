@@ -1,0 +1,139 @@
+:root {
+  --main-bg-color: black;
+  --main-text-color: white;
+  --main-accent-color: rgba(255, 255, 255, 0.065);
+  --header-accent-color: rgba(255, 255, 255, 0.035);
+  --error-color: rgb(216, 72, 72);
+  --title-font-size: 3rem;
+  --heading-font-size: 3rem;
+  --font-size: 1.5rem;
+  --label-font-size: 1.25rem;
+}
+
+/* change text highlight color */
+::selection {
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+}
+
+html {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  font-size: var(--font-size);
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
+}
+
+div.header {
+  padding: 0.15rem 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  border-bottom: 0.15rem solid var(--header-accent-color);
+  margin-bottom: 1rem;
+}
+
+div.header a#title {
+  font-size: var(--title-font-size);
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+div.header a#about {
+  margin-left: 4rem;
+}
+
+div.main-content {
+  align-self: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;  
+  padding: 0.15rem 5%;
+  width: 100%;
+  margin-bottom: auto;
+}
+
+div.container {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 0.25rem;
+  border: 0.15rem solid var(--main-accent-color);
+  padding: 0.75rem 0;
+}
+
+div.container h2,
+div.container p {
+  padding: 0 1rem;
+}
+
+div.container h2 {
+  padding-bottom: 0.4rem;
+}
+
+div.container h2.label {
+  border-bottom: 0.15rem solid var(--main-accent-color);
+  white-space: nowrap;
+  font-size: var(--label-font-size);
+}
+
+div.container input {
+  background-color: inherit;
+  color: inherit;
+  border: 0.15rem solid var(--main-accent-color);
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  margin: 0.25rem 1rem 0;
+}
+
+div.container input:focus {
+border-color: var(--main-text-color);
+outline: none;
+}
+
+div.footer {
+  padding: 0.15rem 2rem;
+  border-top: 0.15rem solid var(--header-accent-color);
+  margin-top: 1rem;
+  min-height: 2rem;
+}
+
+@media (max-width: 600px) {
+
+div.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.15rem 2rem 0;
+}
+
+div.header a#title {
+  margin-right: 0;
+  white-space: nowrap;
+  font-size: calc(var(--heading-font-size)*0.75);
+}
+
+div.header a#about {
+  margin-left: 0;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  font-size: calc(var(--font-size)*0.75);
+}
+
+}
+
+
+
+

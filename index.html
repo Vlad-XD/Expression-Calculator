@@ -10,21 +10,21 @@
   </head>
   <body>
     <div class="header">
-      <a href="./index.html" class="title">Expression Calculator</a>
+      <a href="./index.html" id="title">Expression Calculator</a>
       <a href="./about.html" id="about">about</a>
     </div>
-    <div class="body">
+    <div class="main-content">
       <div id="input-container" class="container">
         <h2 class="label">Input:</h2>
-        <input type="text" id="input" name="input" placeholder="Enter input here..." readonly>
+        <input type="text" id="input" name="input" placeholder="Enter input here...">
       </div>
       <div id="result-container" class="container">
         <h2 class="label">Result:</h2>
-        <input type="text" id="result" name="result" value="Result" readonly>
+        <input type="text" id="result" name="result" value="0" readonly>
       </div>
       <div id="instruction-container" class="container">
         <h2 class="label">Instructions:</h2>
-        <p id="instructions-text">Input a valid expression to calculate in the input box above.
+        <p id="instructions-text">Input a valid numerical expression to calculate in the input box above.
           Currently, the only supported operations are parentheticals, exponentiation (^), multiplication (*),
           division (/), addition (+), subtraction (-).
         </p>
