@@ -1,35 +1,68 @@
-console.log("Ruby-Chan! Nani Ga Suki?");
-
-let inputString = "(20+89./45*96-96+98/85*96-99+99+6523*85541/8859-9632+5642*8552*(0.12567)*9+6-9)^2^3^0.09856^5";
-// let inputString = "(((((600*10)))))-500*10";
-
-// clean input up to remove white space
-inputString = inputString.replaceAll(" ", "");
-
-console.log(`The corrected input is ${inputString}`);
-
 // global variables
-const operators = ["+","-","*","/","^",")",undefined];
+let inputString = "";
+const operators = ["+","-","*","/","^",undefined];
+const digits = ["0","1","2","3","4","5","6","7","8","9"];
 let tokenLocation = 0;
 let token = inputString[tokenLocation];
 let outputInt = 0;
 let currentNumberString = "";
+const inputBox = document.querySelector("input#input");
+const resultBox = document.querySelector("input#result");
 
-try {
-  // call input function to begin parsing
-  parseInput();
+inputBox.addEventListener("focusout", () => {
+  getinputString();
+  calculateOutput();
+})
 
-  // print output
-  console.log(`The result of the input expression is ${outputInt}.`)
-} catch (e) {
-  console.log("Error in parsing input!");
-  console.log(e);
+inputBox.addEventListener("keypress", (e) => {
+  if(e.key == "Enter"){
+    getinputString();
+    calculateOutput();
+  }
+})
+
+function getinputString() {
+  inputString = inputBox.value;
+  // clean input up to remove white space
+  inputString = inputString.replaceAll(" ", "");
+
+  // reset global variables
+  currentNumberString = "";
+  tokenLocation = 0;
+  token = inputString[tokenLocation];
+}
+
+function calculateOutput(){
+  try {
+    // call input function to begin parsing
+    parseInput();
+
+    // after done parsing, display the result
+    resultBox.value = outputInt;
+    resultBox.classList.remove("error");
+
+    // print output in console
+    console.log(`The result of the input expression is ${outputInt}.`)
+  } catch (e) {
+
+    // if error, display error message in result box
+    resultBox.value = "ERROR: VERIFY INPUT!";
+    resultBox.classList.add("error");
+
+    // print error message in console
+    console.log("Error in parsing input!");
+    console.log(e);
+  }
 }
 
 function parseInput() {
   if (["(", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(token)) {
     outputInt = expr();
-  } else if (token == undefined) { //i.e., end of string
+    // check for end of string
+    if (token != undefined){
+      error();
+    } 
+  } else if (token === undefined) { //i.e., empty of string
     // don't throw an error
   } else {
     error();
@@ -119,6 +152,7 @@ function basePrime() {
 function factor() {
   if (token === "("){
     accept();
+    operators.push(")"); // this is to make sure epsilon* works correct w/ parantheticals
     factorNumber = expr();
     if (token === ")"){
       accept();
@@ -128,7 +162,7 @@ function factor() {
     } else {
       error();
     }
-  } else if (["0","1","2","3","4","5","6","7","8","9"].includes(token)) {
+  } else if (digits.includes(token)) {
     digit();
     let factorNumber = parseFloat(currentNumberString); //obtain factor
     currentNumberString = ""; // reset current number
@@ -138,20 +172,10 @@ function factor() {
   }
 }
 
-// TODO: DELETE, NOT NECCESSARY
-// function number() {
-//     if (["0","1","2","3","4","5","6","7","8","9"].includes(token)){
-//     digit();
-//     digitPrime();
-//   } else {
-//     error();
-//   }
-// }
-
 function digit() {
   let errorFlag = true;
   // for loop to check each digit [0,9]
-  for(const digit of ["0","1","2","3","4","5","6","7","8","9"]){
+  for(const digit of digits){
     if (token === digit){
       errorFlag = false;
       currentNumberString = currentNumberString.concat(digit);
@@ -170,18 +194,22 @@ function digitPrime() {
     currentNumberString = currentNumberString.concat(token);
     accept();
     decimal();
-  } else if (["0","1","2","3","4","5","6","7","8","9"].includes(token)) {
+  } else if (digits.includes(token)) {
     digit();
   } else if (!operators.includes(token)) { //this behavior is meant to implement epsilon*
     error();
   }else{
     // epsilon*, so do nothing
+    // this is to make sure epsilon* works correct w/ parantheticals
+    if (token === ")" ){
+      operators.pop();
+    }
   }
 }
 
 function decimal() {
   // for loop to check each digit [0,9]
-  for(const digit of ["0","1","2","3","4","5","6","7","8","9"]){
+  for(const digit of digits){
     if (token === digit){
       currentNumberString = currentNumberString.concat(digit);
       accept();
