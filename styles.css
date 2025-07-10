@@ -8,6 +8,11 @@
   --heading-font-size: 3rem;
   --font-size: 1.5rem;
   --label-font-size: 1.25rem;
+  /* about page properties */
+  --grammar-bg-color: white;
+  --grammar-text-color: black;
+  --grammar-font-size: 1.25rem;
+  --notes-font-size: 1rem;
 }
 
 /* change text highlight color */
@@ -37,7 +42,7 @@ div.header {
   padding: 0.15rem 2rem;
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   border-bottom: 0.15rem solid var(--header-accent-color);
   margin-bottom: 1rem;
 }
@@ -102,6 +107,10 @@ border-color: var(--main-text-color);
 outline: none;
 }
 
+input#result.error {
+  color: var(--error-color);
+}
+
 div.footer {
   padding: 0.15rem 2rem;
   border-top: 0.15rem solid var(--header-accent-color);
@@ -134,6 +143,103 @@ div.header a#about {
 
 }
 
+/* ---------- about page styles ---------- */
 
+div.about-container {
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  max-width: 100rem;
+  align-self: center;
+}
 
+div.grammar-container {
+  align-self: center;
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2% 5%;
+  margin: 2rem 15%;
+  background-color: var(--grammar-bg-color);
+  color: var(--grammar-text-color);
+  font-size: var(--grammar-font-size);
+  outline: 0.35rem solid var(--main-accent-color);
+  gap: 1rem;
+}
 
+div.grammar-container ::selection{
+  background-color: #3399FF;
+  color: white;
+}
+
+div.grammar-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.grammar-box div.line {
+  display: grid;
+  grid-template-columns: 6rem 2rem 10rem;
+  column-gap: 0.5rem;
+}
+
+div.line p.lhs {
+  justify-self: end;
+}
+
+div.line p.arrow {
+  justify-self: center;
+}
+
+div.line p.rhs {
+  justify-self: start;
+}
+
+div.notes-container {
+  border-top: 0.1rem solid var(--grammar-text-color);
+  font-size: var(--notes-font-size);
+}
+
+a.repo-link {
+  align-self: center;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  border: 0.15rem solid var(--main-text-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+a.repo-link::selection {
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+}
+
+@media (max-width: 600px) {
+
+div.grammar-container {
+  font-size: calc(var(--grammar-font-size)*0.65);
+}
+
+div.grammar-box div.line {
+  grid-template-columns: 4rem 2rem 6rem;
+}
+
+}
+
+/* media query to prevent hover behavior for link button in non-hoverable devices */
+@media (hover: hover) {
+
+a.repo-link:hover {
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+  transition: all 0.15s ease-in-out;
+}
+
+a.repo-link:hover::selection {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+}
